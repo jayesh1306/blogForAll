@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Add | Delete | Update Post from Here</title>
+</head>
+
+<body>
+    <%- include includes/nav.ejs%>
+    <div class="text-right">
+        <p name="name">Welcome, <%= user.name %></p>
+        <%if (user) { %>
+        <span>You can Log Out by clicking here : <a href="/users/logout"><b>Log
+                    Out</b></a></span>
+        <%}%>
+            </div>
+    <hr>
+    <div class="container">
+            <ul class="list-group">
+                    <% for (var i=0;i< data.length;i++) { %>
+        <li class="list-group-item"><a href="/posts/edit/<%= data[i]._id %>"><i class="fa fa-pencil text-right"></i></a> :
+            <%= data[i].title %>
+        </li>
+        <%}%>
+                  </ul>
+    </div>
+    </div>
+    </div>
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
+    <%- include includes/foot.ejs %>

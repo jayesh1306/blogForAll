@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        footer {
+            position: fixed !important;
+        }
+
+        .media:hover {
+            background-color: lightgrey;
+            transition-duration: 0.5s;
+            text-decoration: none;
+            box-shadow: 1px 1px 5px grey !important
+        }
+    </style>
+    <title>Blog Posts</title>
+</head>
+
+<body>
+    <%- include includes/nav.ejs %>
+    <div class="container">
+        <div class="container mt-3">
+            <h2>Latest posts</h2>
+            <hr>
+            <% for (var i = data.length - 1 ; i >= 0 ; i--) { %>
+            <a href="/posts/<%= data[i]._id %>" >
+                <div class="media p-3 rounded-lg shadow-sm border mt-3 animated fadeInUp" >
+                    <img src="<%= data[i].user.imageUrl %>" alt="<%= data[i].name%>" class="mr-3 mt-3 rounded-circle"
+                        style="width:60px;">
+                    <div class="media-body">
+                        <h4><%= data[i].name %> <small><i>Posted on <%= data[i].date.toDateString() %></i></small></h4>
+                        <html><%- data[i].title %>
+
+                        </html>
+                    </div>
+                </div>
+            </a>
+            <% } %>
+        </div>
+    </div>
+    <%- include includes/foot.ejs %>
+</body>
+
+</html>

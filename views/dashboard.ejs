@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    <title>Add | Delete | Update Post from Here</title>
+</head>
+
+<body>
+    <%- include includes/nav.ejs%>
+    <div class="text-right">
+        <p name="name">Welcome, <%= data.name %></p>
+        <%if (data) { %>
+        <span>You can Log Out by clicking here : <a href="/users/logout"><b>Log
+                    Out</b></a></span>
+        <%}%>
+            </div>
+    <hr>
+    <div class="container">
+        <h4>Add Post From Here</h4> or <span><a href="/posts/edit">Edit your Posts</a></span>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                    <p style="color: green"><b><%- message %></b></p>
+        <form action="/posts/add" method="post">
+            <input type="hidden" name="name" value="<%= data.name %>">
+            <div class="form-group">
+                <label for="title">Post Title</label>
+                <input type="text" name="title" id="title" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="editor1" name="content" placeholder="Enter your Content here"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add">
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
+    <%- include includes/foot.ejs %>

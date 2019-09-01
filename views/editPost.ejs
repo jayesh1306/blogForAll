@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Add | Delete | Update Post from Here</title>
+</head>
+
+<body>
+    <%- include includes/nav.ejs%>
+    <div class="text-right">
+        <p name="name">Welcome, <%= data.user.name %></p>
+        <%if (data.user) { %>
+        <span>You can Log Out by clicking here : <a href="/users/logout"><b>Log
+                    Out</b></a></span>
+        <%}%>
+            </div>
+    <hr>
+    <div class="container">
+            <h4>Edit Post From Here</h4>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                    <!-- <p style="color: green"><b><%- message %></b></p> -->
+        <form action="/posts/edit/<%=data._id%>" method="post">
+            <input type="hidden" name="name" value="<%= data.name %>">
+            <div class="form-group">
+                <label for="title">Post Title</label>
+                <input type="text" name="title" id="title" class="form-control" value="<%= data.title %>" required>
+            </div>
+            <input type="hidden" name="_id" value="<%= data._id %>">
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="editor1" name="content" placeholder="Enter your Content here" value="<%- data.content %>"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    <script>
+        CKEDITOR.replace('editor1');
+    </script>
+    <%- include includes/foot.ejs %>
