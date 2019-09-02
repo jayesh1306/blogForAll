@@ -24,16 +24,6 @@ router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
 // Register Page
 router.get('/register', (req, res, next) => {
-	jwt.verify(req.token, 'secret', (err, authData) => {
-		if (err) {
-			res.sendStatus(403);
-		} else {
-			res.json({
-				message: 'Post Created',
-				authData
-			})
-		}
-	})
 	res.render('register');
 });
 
@@ -131,4 +121,19 @@ router.get('/logout', (req, res) => {
 	res.redirect('/login');
 });
 
+//View Profile
+router.get('/profile/:id', (req, res, next) => {
+
+	User.findOne({ _id: req.params.id }, (err, user) => {
+		if (err) {
+			res.render('error', {
+				message: err
+			})
+		} else {
+			res.render('profile', {
+				data: data
+			})
+		}
+	})
+})
 module.exports = router;

@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
 	Posts.find(function (err, data) {
 		res.render('index', {
 			data: data,
-			isLogin: false
 		});
 	});
 });
@@ -56,8 +55,6 @@ router.get('/posts/edit', ensureAuthenticated, (req, res, next) => {
 		if (err) {
 			res.send(err)
 		} else {
-			console.log(data);
-
 			res.render('edit', {
 				data: data,
 				user: req.user
@@ -71,8 +68,6 @@ router.get('/posts/edit/:id', (req, res, next) => {
 		if (err) {
 			res.send(err);
 		} else {
-			console.log(data);
-
 			res.render('editPost', {
 				data: data,
 				message: ''
@@ -86,7 +81,7 @@ router.post('/posts/edit/:id', (req, res, next) => {
 		if (err) {
 			res.send(err);
 		} else {
-			Posts.updateOne({ title: req.body.title, content: req.body.content }, (err, data)=>{
+			Posts.updateOne({ title: req.body.title, content: req.body.content }, (err, data) => {
 				res.send("UPDATED")
 			})
 		}

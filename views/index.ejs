@@ -5,44 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-        footer {
-            position: fixed !important;
-        }
-
-        .media:hover {
-            background-color: lightgrey;
-            transition-duration: 0.5s;
-            text-decoration: none;
-            box-shadow: 1px 1px 5px grey !important
-        }
-    </style>
     <title>Blog Posts</title>
 </head>
 
 <body>
     <%- include includes/nav.ejs %>
-    <div class="container">
-        <div class="container mt-3">
-            <h2>Latest posts</h2>
-            <hr>
-            <% for (var i = data.length - 1 ; i >= 0 ; i--) { %>
-            <a href="/posts/<%= data[i]._id %>" >
-                <div class="media p-3 rounded-lg shadow-sm border mt-3 animated fadeInUp" >
-                    <img src="<%= data[i].user.imageUrl %>" alt="<%= data[i].name%>" class="mr-3 mt-3 rounded-circle"
-                        style="width:60px;">
-                    <div class="media-body">
-                        <h4><%= data[i].name %> <small><i>Posted on <%= data[i].date.toDateString() %></i></small></h4>
-                        <html><%- data[i].title %>
+    <div class="container mt-3 animated" id="anime">
+        <h2>Latest posts</h2>
+        <hr>
+        <% if (data.length == 0){%>
+        <h2>Sorry, No Posts Available.....Login to add post from here</h2>
+        <p><a href="/login">Click Here to Login</a></p>
+        <%} else {%>
+        <% for (var i = data.length - 1 ; i >= 0 ; i--) { %>
+        <!-- Section: Blog v.1 -->
+        <section class="my-5">
 
-                        </html>
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-lg-2">
+
+                    <!-- Featured image -->
+                    <div>
+                        <a href="/users/profile/<%=data[i].user._id%>">
+                            <img class="rounded-circle z-depth-1" width="150" height="150"
+                                src="<%= data[i].user.imageUrl %>" alt="Sample image">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
                     </div>
+
                 </div>
-            </a>
-            <% } %>
-        </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-lg-10">
+
+                    <!-- Category -->
+                    <!-- Post title -->
+                    <h3 class="font-weight-bold mb-1"><strong><%= data[i].title %></strong></h3>
+                    <!-- Excerpt -->
+                    <div style="max-height: 92px;overflow: hidden">
+                        <p><%- data[i].content %> </p>
+                    </div>
+                    <!-- Post data -->
+                    <p class="mt-2">by <a><strong><a
+                                    href="/users/profile/<%= data[i].user._id%>"><%= data[i].user.name %></a></strong></a>,
+                        <%=data[i].date.toDateString()%></p>
+                    <!-- Read more button -->
+                    <a class="btn btn-success btn-md" href="/posts/<%=data[i]._id%>" onclick="animation()">Read
+                        more</a>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+        </section>
+        <hr>
+        <!-- Section: Blog v.1 -->
+        <%}%>
+        <%}%>
     </div>
     <%- include includes/foot.ejs %>
+    <script>
+        function animation() {
+            var element = document.getElementById("anime");
+            element.classList.add("slideOutDown", "slower");
+        }
+    </script>
 </body>
 
 </html>

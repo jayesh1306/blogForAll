@@ -1,0 +1,11 @@
+/* Post.ejs styles */
+@media screen and (max-width:767px){
+    h1{
+        font-size: 1.5rem
+    }
+}
+@media screen and (max-width:428px){
+    h1{
+        font-size: 1rem
+    }
+}

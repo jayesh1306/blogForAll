@@ -5,34 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
-    .footer{
-        bottom: 0;
-        position: fixed;
-    }
+        .page-footer {
+            bottom: 0;
+            position: fixed;
+            width: 100%;
+        }
     </style>
     <title><%= data.title %></title>
 </head>
 
 <body>
     <%- include includes/nav.ejs %>
-    <div class="container animated fadeInUp">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <img src="<%= data.user.imageUrl %>" alt="<%= data.name %>" width="150" height="150"
-                    style="border-radius: 50%">
-                <p><b><%= data.user.name %></b></p>
+    <div class="container animated fadeInUp slow">
+        <div class="row mt-5">
+            <div class="col-md-1">
+                <img class="rounded-circle" src="<%= data.user.imageUrl %>" alt="<%= data.user.imageUrl %>" width="60"
+                    height="60">
+            </div>
+            <div class="col-md-8 text-left">
+                <p class="mt-2"><strong>By : <%= data.user.name %></strong></p>
+                <p style="margin-top: -15px"><strong>On, <%= data.date.toDateString()%></strong></p><span
+                    id="readTime"></span> mins read
             </div>
         </div>
-        <h3
-            style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
-            <%= data.title %></h3>
-        <p>Posted On : <%= data.date.toDateString() %></p>
-
         <hr>
-        <p><%- data.content %></p>
+        <input type="hidden"  value="<%= data.content %>" id="content">
+        <p class="responsive"><%- data.content %></p>
     </div>
     <%- include includes/foot.ejs %>
+    <script type="text/javascript">
+        var totalWords = document.getElementById("content").value;
+        var timeToRead = totalWords.length / 200;
+        var timeInt = Math.round(timeToRead);
+        document.getElementById("readTime").innerHTML = timeInt;
+        console.log(totalWords, timeToRead, timeInt)
+    </script>
 </body>
 
 </html>
