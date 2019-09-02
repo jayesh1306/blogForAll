@@ -123,7 +123,7 @@ router.get('/logout', (req, res) => {
 
 //View Profile
 router.get('/profile/:id', (req, res, next) => {
-
+	var data;
 	User.findOne({ _id: req.params.id }, (err, user) => {
 		if (err) {
 			res.render('error', {
