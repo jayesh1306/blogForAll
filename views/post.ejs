@@ -21,7 +21,7 @@
     <div class="container animated fadeInUp slow">
         <div class="row mt-5">
             <div class="col-md-1">
-                <img class="rounded-circle" src="<%= data.user.imageUrl %>" alt="<%= data.user.imageUrl %>" width="60"
+                <img class="rounded-circle profileOfPost" src="<%= data.user.imageUrl %>" alt="<%= data.user.imageUrl %>" width="60"
                     height="60">
             </div>
             <div class="col-md-8 text-left">
@@ -34,12 +34,12 @@
         </div>
         <hr>
         <input type="hidden" value="<%= data.content %>" id="content">
-        <div class="row">
+        <div class="row ">
             <div class="col-md-12">
                 <p class="responsive"><%- data.content %></p>
             </div>
         </div>
-    </div>
+    </div><br><br><br>
     <%- include includes/foot.ejs %>
     <script type="text/javascript">
         var totalWords = document.getElementById("content").value;

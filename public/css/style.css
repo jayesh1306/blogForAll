@@ -14,3 +14,37 @@
 li{
     font-size: 20px;
 }
+
+/* Post.EJs style */
+
+img{
+    width: 50%;
+}
+
+img.profileOfPost{
+    width: auto !important;
+}
+
+@media screen and (max-width:600px){
+    img{
+        width: 100%;
+    }
+    img.profileOfPost{
+        width: 30% !important;
+        height: 90% !important
+    }
+}
+
+
+/* Profile ejs File styles */
+img.profile{
+    width: 300px;
+    height: 300px
+}
+
+@media screen and (max-width:425px){
+    img.profile{
+        width: 200px;
+        height: 200px
+    }
+}
