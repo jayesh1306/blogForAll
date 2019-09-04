@@ -1,8 +1,7 @@
-# Node.js & Passport Login
+# High Blog
 
-This is a user login and registration app using Node.js, Express, Passport, Mongoose, EJS and some other packages.
+This is Blog for the user who can add, Edit, Delete Posts and Other user can see their posts
 
-### Version: 2.0.0
 
 ### Usage
 
@@ -15,11 +14,10 @@ $ npm start
 # Or run with Nodemon
 $ npm run dev
 
-# Visit http://localhost:5000
+# Visit http://localhost:3000
 ```
 
 ### MongoDB
 
 Open "config/keys.js" and add your MongoDB URI, local or Atlas
 
-#mongodb pass : vGp47EiQUlpgHfa1
