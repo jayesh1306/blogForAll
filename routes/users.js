@@ -102,8 +102,6 @@ router.post('/login', passport.authenticate('local', {
 	failureFlash: false
 }), function (req, res, next) {
 	User.findOne({ email: req.body.email }, (err, data) => {
-		// console.log(data);
-
 		if (err) {
 			res.send(err);
 		} else {
@@ -131,9 +129,10 @@ router.get('/profile/:id', (req, res, next) => {
 			})
 		} else {
 			res.render('profile', {
-				data: data
+				data: user
 			})
 		}
 	})
 })
+
 module.exports = router;

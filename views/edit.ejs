@@ -8,29 +8,38 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Add | Delete | Update Post from Here</title>
 </head>
 
 <body>
     <%- include includes/nav.ejs%>
-    <div class="text-right">
+    <div class="text-right pt-3 mr-3">
         <p name="name">Welcome, <%= user.name %></p>
-        <%if (user) { %>
+        <% if (user) { %>
         <span>You can Log Out by clicking here : <a href="/users/logout"><b>Log
                     Out</b></a></span>
         <%}%>
             </div>
     <hr>
     <div class="container">
+        <p style="color: green"><b><%- message %></b></p>
+        <% if (data.length < 1) {%>
+        <h2>No Posts Found Add some <a href="/dashboard">Here</a></h2>
+        <%} else { %>
             <ul class="list-group">
-                    <% for (var i=0;i< data.length;i++) { %>
-        <li class="list-group-item"><a href="/posts/edit/<%= data[i]._id %>"><i class="fa fa-pencil text-right"></i></a> :
-            <%= data[i].title %>
-        </li>
-        <%}%>
-                  </ul>
-    </div>
-    </div>
+                <% for (var i=0;i< data.length;i++) { %>
+                <li class="list-group-item">
+                    <%= data[i].title %>
+                    <div style="display: inline;float: right;">
+                        <!-- <a href="/posts/edit/<%= data[i]._id %>"><i class="fa fa-edit fa-1x" aria-hidden="true"></i></a> &nbsp; -->
+                        <a href="/posts/delete/<%= data[i]._id %>"><i class="fa fa-minus-circle fa-1x"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </li>
+                <%}%>
+                      </ul>
+            <%}%>
     </div>
     <script>
         CKEDITOR.replace('editor1');

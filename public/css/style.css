@@ -9,3 +9,8 @@
         font-size: 1rem
     }
 }
+
+/* edit.ejs styles */
+li{
+    font-size: 20px;
+}

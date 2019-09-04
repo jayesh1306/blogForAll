@@ -50,31 +50,53 @@ router.post('/posts/add', ensureAuthenticated, (req, res, next) => {
 
 })
 
-router.get('/posts/edit', ensureAuthenticated, (req, res, next) => {
+router.get('/posts/delete', ensureAuthenticated, (req, res, next) => {
 	Posts.find({ user: req.user }, (err, data) => {
 		if (err) {
 			res.send(err)
 		} else {
 			res.render('edit', {
 				data: data,
-				user: req.user
+				user: req.user,
+				message: ''
 			})
 		}
 	});
 })
 
-router.get('/posts/edit/:id', (req, res, next) => {
-	Posts.findOne({ _id: req.params.id }, (err, data) => {
+router.get('/posts/delete/:id', ensureAuthenticated, (req, res, next) => {
+	Posts.deleteOne({ _id: req.params.id }, async (err) => {
 		if (err) {
-			res.send(err);
+			return res.json(err);
 		} else {
-			res.render('editPost', {
-				data: data,
-				message: ''
-			})
+			Posts.find({ user: req.user }, (err1, data1) => {
+				if (err1) {
+					res.json(err1)
+				} else {
+					res.render('edit', {
+						data: data1,
+						user: req.user,
+						message: 'Deleted Successfully'
+					})
+				}
+			});
 		}
 	})
-})
+});
+
+//Edit Single Post
+// router.get('/posts/edit/:id', (req, res, next) => {
+// 	Posts.findOne({ _id: req.params.id }, (err, data) => {
+// 		if (err) {
+// 			res.send(err);
+// 		} else {
+// 			res.render('editPost', {
+// 				data: data,
+// 				message: ''
+// 			})
+// 		}
+// 	})
+// })
 
 router.post('/posts/edit/:id', (req, res, next) => {
 	Posts.findOne({ _id: req.params.id }, (err, data) => {

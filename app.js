@@ -18,7 +18,7 @@ mongoose
     db,
     { useNewUrlParser: true }
   )
-  .then(() => console.log('MongoDB Connected'))
+  .then(() => console.log('Database Connected'))
   .catch(err => console.log(err));
 
 // EJS

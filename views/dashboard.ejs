@@ -8,9 +8,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/js/mdb.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        #cke_editor1,
+        #cke_inner,
+        #cke_1_top,
+        #cke_1_contents {
+            border-radius: 5px !important;
+        }
+    </style>
     <title>Add | Delete | Update Post from Here</title>
 </head>
 
@@ -25,10 +33,9 @@
             </div>
     <hr>
     <div class="container">
-        <h4>Add Post From Here</h4> or <span><a href="/posts/edit">Edit your Posts</a></span>
+        <h4>Add Post From Here</h4> or <span><a href="/posts/delete">Delete your Posts</a></span>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                     <p style="color: green"><b><%- message %></b></p>
         <form action="/posts/add" method="post">
             <input type="hidden" name="name" value="<%= data.name %>">
@@ -37,11 +44,11 @@
                 <input type="text" name="title" id="title" class="form-control" required>
             </div>
             <div class="md-form">
-                <label for="content">Content</label>
-                <textarea id="editor1" name="content" placeholder="Enter your Content here"></textarea>
+                <textarea style="border-radius: 10px !important" id="editor1" name="content"
+                    placeholder="Enter your Content here"></textarea>
             </div>
             <div class="md-form">
-                <input type="submit" class="btn btn-primary" value="Add">
+                <input type="submit" class="md-btn" value="Add">
             </div>
         </form>
     </div>

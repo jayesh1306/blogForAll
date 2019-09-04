@@ -26,13 +26,19 @@
             </div>
             <div class="col-md-8 text-left">
                 <p class="mt-2"><strong>By : <%= data.user.name %></strong></p>
-                <p style="margin-top: -15px"><strong>On, <%= data.date.toDateString()%></strong></p><span
-                    id="readTime"></span> mins read
+                <p style="margin-top: -15px"><strong>On, <%= data.date.toDateString()%></strong></p>
+                <div style="margin-top: -15px">
+                    <span id="readTime"></span> min read
+                </div>
             </div>
         </div>
         <hr>
-        <input type="hidden"  value="<%= data.content %>" id="content">
-        <p class="responsive"><%- data.content %></p>
+        <input type="hidden" value="<%= data.content %>" id="content">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="responsive"><%- data.content %></p>
+            </div>
+        </div>
     </div>
     <%- include includes/foot.ejs %>
     <script type="text/javascript">
