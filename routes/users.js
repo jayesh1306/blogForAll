@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const multer = require('multer');
-const jwt = require('jsonwebtoken');
 var upload = multer({ dest: 'uploads/' });
 
 const cloudinary = require('cloudinary').v2;
